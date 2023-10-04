@@ -1,0 +1,155 @@
+import FilmCard from '../../components/film-card/film-card';
+
+type MainPageProps = {
+    titleFilm: string;
+    genreFilm: string;
+    yearFilm: string;
+}
+
+function MainPage({ titleFilm, genreFilm, yearFilm }: MainPageProps): JSX.Element {
+  return (
+    <>
+      <section className="film-card">
+        <div className="film-card__bg">
+          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        </div>
+
+        <h1 className="visually-hidden">WTW</h1>
+
+        <header className="page-header film-card__head">
+          <div className="logo">
+            <a className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
+          </div>
+
+          <ul className="user-block">
+            <li className="user-block__item">
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+            </li>
+            <li className="user-block__item">
+              <a className="user-block__link">Sign out</a>
+            </li>
+          </ul>
+        </header>
+
+        <div className="film-card__wrap">
+          <div className="film-card__info">
+            <div className="film-card__poster">
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            </div>
+
+            <div className="film-card__desc">
+              <h2 className="film-card__title">{titleFilm}</h2>
+              <p className="film-card__meta">
+                <span className="film-card__genre">{genreFilm}</span>
+                <span className="film-card__year">{yearFilm}</span>
+              </p>
+
+              <div className="film-card__buttons">
+                <button className="btn btn--play film-card__button" type="button">
+                  <svg viewBox="0 0 19 19" width="19" height="19">
+                    <use xlinkHref="#play-s"></use>
+                  </svg>
+                  <span>Play</span>
+                </button>
+                <button className="btn btn--list film-card__button" type="button">
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                  <span>My list</span>
+                  <span className="film-card__count">9</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="page-content">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+          <ul className="catalog__genres-list">
+            <li className="catalog__genres-item catalog__genres-item--active">
+              <a href="#" className="catalog__genres-link">All genres</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Comedies</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Crime</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Documentary</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Dramas</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Horror</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Kids & Family</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Romance</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Sci-Fi</a>
+            </li>
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">Thrillers</a>
+            </li>
+          </ul>
+
+          <div className="catalog__films-list">
+            <FilmCard srcImage="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" titleFilm="Fantastic Beasts: The Crimes of Grindelwald" />
+            <FilmCard srcImage="img/bohemian-rhapsody.jpg" titleFilm="Bohemian Rhapsody" />
+            <FilmCard srcImage="img/macbeth.jpg" titleFilm="Macbeth" />
+            <FilmCard srcImage="img/aviator.jpg" titleFilm="Aviator" />
+            <FilmCard srcImage="img/we-need-to-talk-about-kevin.jpg" titleFilm="We need to talk about Kevin" />
+            <FilmCard srcImage="img/what-we-do-in-the-shadows.jpg" titleFilm="What We Do in the Shadows" />
+            <FilmCard srcImage="img/revenant.jpg" titleFilm="Revenant" />
+            <FilmCard srcImage="img/johnny-english.jpg" titleFilm="Johnny English" />
+            <FilmCard srcImage="img/shutter-island.jpg" titleFilm="Shutter Island" />
+            <FilmCard srcImage="img/pulp-fiction.jpg" titleFilm="Pulp Fiction" />
+            <FilmCard srcImage="img/no-country-for-old-men.jpg" titleFilm="No Country for Old Men" />
+            <FilmCard srcImage="img/snatch.jpg" titleFilm="Snatch" />
+            <FilmCard srcImage="img/moonrise-kingdom.jpg" titleFilm="Moonrise Kingdom" />
+            <FilmCard srcImage="img/seven-years-in-tibet.jpg" titleFilm="Seven Years in Tibet" />
+            <FilmCard srcImage="img/midnight-special.jpg" titleFilm="Midnight Special" />
+            <FilmCard srcImage="img/war-of-the-worlds.jpg" titleFilm="War of the Worlds" />
+            <FilmCard srcImage="img/dardjeeling-limited.jpg" titleFilm="Dardjeeling Limited" />
+            <FilmCard srcImage="img/orlando.jpg" titleFilm="Orlando" />
+            <FilmCard srcImage="img/mindhunter.jpg" titleFilm="Mindhunter" />
+            <FilmCard srcImage="img/midnight-special.jpg" titleFilm="Midnight Special" />
+          </div>
+
+          <div className="catalog__more">
+            <button className="catalog__button" type="button">Show more</button>
+          </div>
+        </section>
+
+        <footer className="page-footer">
+          <div className="logo">
+            <a className="logo__link logo__link--light">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
+          </div>
+
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
+}
+
+export default MainPage;
