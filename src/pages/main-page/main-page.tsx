@@ -1,4 +1,5 @@
 import FilmCard from '../../components/film-card/film-card';
+import { filmCards } from '../../const';
 
 type MainPageProps = {
     titleFilm: string;
@@ -107,26 +108,7 @@ function MainPage({ titleFilm, genreFilm, yearFilm }: MainPageProps): JSX.Elemen
           </ul>
 
           <div className="catalog__films-list">
-            <FilmCard srcImage="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" titleFilm="Fantastic Beasts: The Crimes of Grindelwald" />
-            <FilmCard srcImage="img/bohemian-rhapsody.jpg" titleFilm="Bohemian Rhapsody" />
-            <FilmCard srcImage="img/macbeth.jpg" titleFilm="Macbeth" />
-            <FilmCard srcImage="img/aviator.jpg" titleFilm="Aviator" />
-            <FilmCard srcImage="img/we-need-to-talk-about-kevin.jpg" titleFilm="We need to talk about Kevin" />
-            <FilmCard srcImage="img/what-we-do-in-the-shadows.jpg" titleFilm="What We Do in the Shadows" />
-            <FilmCard srcImage="img/revenant.jpg" titleFilm="Revenant" />
-            <FilmCard srcImage="img/johnny-english.jpg" titleFilm="Johnny English" />
-            <FilmCard srcImage="img/shutter-island.jpg" titleFilm="Shutter Island" />
-            <FilmCard srcImage="img/pulp-fiction.jpg" titleFilm="Pulp Fiction" />
-            <FilmCard srcImage="img/no-country-for-old-men.jpg" titleFilm="No Country for Old Men" />
-            <FilmCard srcImage="img/snatch.jpg" titleFilm="Snatch" />
-            <FilmCard srcImage="img/moonrise-kingdom.jpg" titleFilm="Moonrise Kingdom" />
-            <FilmCard srcImage="img/seven-years-in-tibet.jpg" titleFilm="Seven Years in Tibet" />
-            <FilmCard srcImage="img/midnight-special.jpg" titleFilm="Midnight Special" />
-            <FilmCard srcImage="img/war-of-the-worlds.jpg" titleFilm="War of the Worlds" />
-            <FilmCard srcImage="img/dardjeeling-limited.jpg" titleFilm="Dardjeeling Limited" />
-            <FilmCard srcImage="img/orlando.jpg" titleFilm="Orlando" />
-            <FilmCard srcImage="img/mindhunter.jpg" titleFilm="Mindhunter" />
-            <FilmCard srcImage="img/midnight-special.jpg" titleFilm="Midnight Special" />
+            {filmCards.map((filmCard) => <FilmCard key={filmCard.id} srcImage={filmCard.srcImage} titleFilm={filmCard.title}/>)}
           </div>
 
           <div className="catalog__more">
