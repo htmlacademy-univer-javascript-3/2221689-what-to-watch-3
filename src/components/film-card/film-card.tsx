@@ -1,18 +1,16 @@
-type FilmCardProps = {
-    srcImage: string;
-    titleFilm: string;
-}
+import { Link } from 'react-router-dom';
+import { FilmCardProps } from '../../types/film-card.props';
 
-function FilmCard({srcImage, titleFilm}: FilmCardProps): JSX.Element {
+function FilmCard({ id, srcImage, title }: FilmCardProps): JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
+    <>
       <div className="small-film-card__image">
-        <img src={srcImage} alt={titleFilm} width="280" height="175" />
+        <img src={srcImage} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{titleFilm}</a>
+        <Link className="small-film-card__link" to={`/films/${id}`}>{title}</Link>
       </h3>
-    </article>
+    </>
   );
 }
 

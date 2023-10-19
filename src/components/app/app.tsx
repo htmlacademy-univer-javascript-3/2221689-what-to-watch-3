@@ -1,5 +1,6 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppScreenProps } from '../../types/app.props';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
@@ -9,19 +10,13 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
 
-type AppScreenProps = {
-  titleFilm: string;
-  genreFilm: string;
-  yearFilm: string;
-}
-
-function App({ titleFilm, genreFilm, yearFilm }: AppScreenProps): JSX.Element {
+function App({ promoFilm, filmCards }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage titleFilm={titleFilm} genreFilm={genreFilm} yearFilm={yearFilm} />}
+          element={<MainPage promoFilm={promoFilm} filmCards={filmCards}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -31,21 +26,21 @@ function App({ titleFilm, genreFilm, yearFilm }: AppScreenProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListPage />
+              <MyListPage filmCards={filmCards}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage />}
+          element={<MoviePage filmCards={filmCards}/>}
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage />}
+          element={<AddReviewPage filmCards={filmCards}/>}
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerPage />}
+          element={<PlayerPage filmCards={filmCards} />}
         />
         <Route
           path="*"
