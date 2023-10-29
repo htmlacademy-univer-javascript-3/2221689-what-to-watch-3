@@ -1,7 +1,7 @@
 import { FilmCardProps } from './film-card.props';
-import { TReview } from './review.props';
+import { ReviewProps } from './review.props';
 
 export type MoviePageProps = {
   filmCards: FilmCardProps[];
-  reviews: TReview[];
+  reviews: ReviewProps[];
 }
