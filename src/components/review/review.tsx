@@ -1,11 +1,11 @@
 import { months } from '../../const';
-import { TReview } from '../../types/review.props';
+import { ReviewProps } from '../../types/review.props';
 
-type ReviewProps = {
-    review: TReview;
+type ReviewsProps = {
+    review: ReviewProps;
 }
 
-function Review({ review }: ReviewProps): JSX.Element {
+function Review({ review }: ReviewsProps): JSX.Element {
   const date = new Date(review.date);
   const month = date.getMonth() + 1 as keyof typeof months;
   const day = date.getUTCDate();

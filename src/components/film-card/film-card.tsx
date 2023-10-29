@@ -9,9 +9,9 @@ function FilmCard({ id, srcImage, title, previewVideoLink }: FilmCardProps): JSX
 
   return (
     <article className="small-film-card catalog__films-card" onMouseOver={() => {
-      setTimeout(() => setVideoOrImage(<VideoPlayer srcVideo={previewVideoLink} />), 1000)
+      setTimeout(() => setVideoOrImage(<VideoPlayer srcVideo={previewVideoLink} />), 1000);
     }}
-      onMouseOut={() => setVideoOrImage(<PosterFilm srcImage={srcImage} title={title} />)}
+    onMouseOut={() => setVideoOrImage(<PosterFilm srcImage={srcImage} title={title} />)}
     >
       {videoOrImage}
       <h3 className="small-film-card__title">
