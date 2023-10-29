@@ -1,10 +1,12 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FilmCardProps } from '../../types/film-card.props';
 import { MoviePageProps } from '../../types/movie-page.props';
-import FilmsList from '../../components/films-list/films-list';
+import Tabs from '../../components/tabs/tabs';
+import RelatedFilms from '../../components/related-films/related-films';
 
-function MoviePage({filmCards}: MoviePageProps): JSX.Element {
-  const {id} = useParams();
+export function MoviePage({ filmCards, reviews }: MoviePageProps): JSX.Element {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const filmCard = filmCards.find((filmCardItem) => filmCardItem.id === id) as FilmCardProps;
 
   return (
@@ -47,13 +49,13 @@ function MoviePage({filmCards}: MoviePageProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${filmCard.id}`)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <button className="btn btn--list film-card__button" type="button" onClick={() => navigate('/mylist')}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -73,34 +75,7 @@ function MoviePage({filmCards}: MoviePageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{filmCard.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{`${filmCard.scoresCount} ratings`}</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                {filmCard.description}
-                <p className="film-card__director"><strong>{`Director: ${filmCard.director}`}</strong></p>
-
-                <p className="film-card__starring"><strong>{`Starring: ${filmCard.starring[0]}, ${filmCard.starring[1]}, ${filmCard.starring[2]}`}</strong></p>
-              </div>
+              <Tabs filmCard={filmCard} reviews={reviews}/>
             </div>
           </div>
         </div>
@@ -109,7 +84,7 @@ function MoviePage({filmCards}: MoviePageProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList filmCards={filmCards}/>
+          <RelatedFilms filmCards={filmCards} filmCard={filmCard}/>
         </section>
 
         <footer className="page-footer">
