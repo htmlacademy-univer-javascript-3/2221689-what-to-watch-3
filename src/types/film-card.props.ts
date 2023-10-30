@@ -14,4 +14,5 @@ export type FilmCardProps = {
     genre: string;
     released: number;
     isFavorite: boolean;
+    isActive: string;
 }

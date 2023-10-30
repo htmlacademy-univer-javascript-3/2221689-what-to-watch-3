@@ -18,7 +18,8 @@ export const filmCards = [
     runTime: 134,
     genre: 'Fantasy',
     released: 2018,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '2',
@@ -39,7 +40,8 @@ export const filmCards = [
     runTime: 134,
     genre: 'Drama',
     released: 2018,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '3',
@@ -60,7 +62,8 @@ export const filmCards = [
     runTime: 113,
     genre: 'Drama',
     released: 2015,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '4',
@@ -81,7 +84,8 @@ export const filmCards = [
     runTime: 170,
     genre: 'Drama',
     released: 2014,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '5',
@@ -102,7 +106,8 @@ export const filmCards = [
     runTime: 112,
     genre: 'Drama',
     released: 2011,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '6',
@@ -123,7 +128,8 @@ export const filmCards = [
     runTime: 30,
     genre: 'Comedy',
     released: 2019,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '7',
@@ -144,7 +150,8 @@ export const filmCards = [
     runTime: 156,
     genre: 'Action',
     released: 2015,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   },
   {
     id: '8',
@@ -165,6 +172,7 @@ export const filmCards = [
     runTime: 88,
     genre: 'Comedy',
     released: 2003,
-    isFavorite: false
+    isFavorite: false,
+    isActive: ''
   }
 ];
