@@ -1,5 +1,5 @@
 import { FilmCardProps } from '../../types/film-card.props';
-import { getRunTime } from '../../functions';
+import { getRunTime } from '../../get-runtime';
 
 type FilmDetailsProps = {
     filmCard: FilmCardProps;

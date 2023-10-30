@@ -41,7 +41,7 @@ export const months = {
   12: 'December'
 };
 
-export const FilmInfoLink = {
+export const TabsInfo = {
   Overview: 'Overview',
   Details: 'Details',
   Reviews: 'Reviews'
