@@ -61,6 +61,7 @@ function MainPage({ promoFilm }: MainPageProps): JSX.Element {
           <GenreList genres={getGenreList(films)}/>
 
           <FilmsList filmCards={filmsByGenre} filmCount={maxShownCountFilm}/>
+          
           {maxShownCountFilm < filmsByGenre.length && <ShowMoreButton/>}
         </section>
 
