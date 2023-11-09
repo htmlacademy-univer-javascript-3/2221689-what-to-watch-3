@@ -1,5 +1,5 @@
 import { ChangeEvent, Fragment, useState } from 'react';
-import { ratingMap } from '../../const';
+import { RatingMap } from '../../const';
 
 function ReviewForm(): JSX.Element {
   const [comment, setComment] = useState('');
@@ -18,7 +18,7 @@ function ReviewForm(): JSX.Element {
       <form action="#" className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
-            {Object.entries(ratingMap)
+            {Object.entries(RatingMap)
               .reverse()
               .map(([score]) => (
                 <Fragment key={score}>

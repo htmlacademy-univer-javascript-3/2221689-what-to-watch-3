@@ -2,8 +2,23 @@ import PromoFilm from '../../components/promo-film/promo-film';
 import { MainPageProps } from '../../types/main-page.props';
 import FilmsList from '../../components/films-list/films-list';
 import { Link } from 'react-router-dom';
+import GenreList from '../../components/genre-list/genre-list';
+import getGenreList from '../../utils/get-genre-list';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
+import { useEffect } from 'react';
+import { setDefaultCountShownFilms } from '../../store/actions';
 
-function MainPage({ promoFilm, filmCards }: MainPageProps): JSX.Element {
+function MainPage({ promoFilm }: MainPageProps): JSX.Element {
+  const films = useAppSelector((state) => state.filmCards);
+  const filmsByGenre = useAppSelector((state) => state.filmCardsByGenre);
+  const maxShownCountFilm = useAppSelector((state) => state.maxShownFilmCount);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setDefaultCountShownFilms());
+  }, [dispatch]);
+
   return (
     <>
       <section className="film-card">
@@ -43,44 +58,10 @@ function MainPage({ promoFilm, filmCards }: MainPageProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <GenreList genres={getGenreList(films)}/>
 
-          <FilmsList filmCards={filmCards} />
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <FilmsList filmCards={filmsByGenre} filmCount={maxShownCountFilm}/>
+          {maxShownCountFilm < filmsByGenre.length && <ShowMoreButton/>}
         </section>
 
         <footer className="page-footer">

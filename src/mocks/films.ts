@@ -174,5 +174,93 @@ export const filmCards = [
     released: 2003,
     isFavorite: false,
     isActive: ''
+  },
+  {
+    id: '9',
+    title: 'We need to talk about Kevin',
+    posterImage: 'https://13.design.pages.academy/static/film/poster/We_need_to_talk_about_Kevin.jpg',
+    srcImage: 'https://13.design.pages.academy/static/film/background/We_need_to_talk_about_Kevin.jpg',
+    backgroundColor: '#E1DFDE',
+    previewVideoLink: 'https://13.design.pages.academy/static/film/video/bubbles.mp4',
+    description: 'Kevin\'s mother struggles to love her strange child, despite the increasingly dangerous things he says and does as he grows up. But Kevin is just getting started, and his final act will be beyond anything anyone imagined.',
+    rating: 3.8,
+    scoresCount: 123240,
+    director: 'Lynne Ramsay',
+    starring: [
+      'Tilda Swinton',
+      'John C. Reilly',
+      'Ezra Miller'
+    ],
+    runTime: 112,
+    genre: 'Drama',
+    released: 2011,
+    isFavorite: false,
+    isActive: ''
+  },
+  {
+    id: '10',
+    title: 'What We Do in the Shadows',
+    posterImage: 'https://13.design.pages.academy/static/film/poster/What-We-Do-in-the-Shadows.jpg',
+    srcImage: 'https://13.design.pages.academy/static/film/background/What-We-Do-in-the-Shadows.jpg',
+    backgroundColor: '#A39E81',
+    previewVideoLink: 'https://13.design.pages.academy/static/film/video/matrix.mp4',
+    description: 'A look into the daily (or rather, nightly) lives of three vampires who\'ve lived together for over 100 years, in Staten Island.',
+    rating: 7.2,
+    scoresCount: 6173,
+    director: 'Jemaine Clement',
+    starring: [
+      'Kayvan Novak',
+      'Matt Berry',
+      'Natasia Demetriou'
+    ],
+    runTime: 30,
+    genre: 'Comedy',
+    released: 2019,
+    isFavorite: false,
+    isActive: ''
+  },
+  {
+    id: '11',
+    title: 'The Revenant',
+    posterImage: 'https://13.design.pages.academy/static/film/poster/Revenant.jpg',
+    srcImage: 'https://13.design.pages.academy/static/film/background/Revenant.jpg',
+    backgroundColor: '#92918B',
+    previewVideoLink: 'https://13.design.pages.academy/static/film/video/bubbles.mp4',
+    description: 'A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.',
+    rating: 4,
+    scoresCount: 618498,
+    director: 'Alejandro G. Iñárritu',
+    starring: [
+      'Leonardo DiCaprio',
+      'Tom Hardy',
+      'Will Poulter'
+    ],
+    runTime: 156,
+    genre: 'Action',
+    released: 2015,
+    isFavorite: false,
+    isActive: ''
+  },
+  {
+    id: '12',
+    title: 'Johnny English',
+    posterImage: 'https://13.design.pages.academy/static/film/poster/Johnny_English.jpg',
+    srcImage: 'https://13.design.pages.academy/static/film/background/Johnny_English.jpg',
+    backgroundColor: '#F0DBA2',
+    previewVideoLink: 'https://13.design.pages.academy/static/film/video/bike.mp4',
+    description: 'After a sudden attack on the MI5, Johnny English, Britain\'s most confident yet unintelligent spy, becomes Britain\'s only spy.',
+    rating: 10,
+    scoresCount: 136843,
+    director: 'Peter Howitt',
+    starring: [
+      'Rowan Atkinson',
+      'John Malkovich',
+      'Natalie Imbruglia'
+    ],
+    runTime: 88,
+    genre: 'Comedy',
+    released: 2003,
+    isFavorite: false,
+    isActive: ''
   }
 ];

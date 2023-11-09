@@ -1,5 +1,5 @@
 import { FilmCardProps } from '../../types/film-card.props';
-import getRatingName from '../../get-rating-name';
+import getRatingName from '../../utils/get-rating-name';
 
 type FilmOverviewProps = {
     filmCard: FilmCardProps;

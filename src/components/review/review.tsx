@@ -1,4 +1,4 @@
-import { months } from '../../const';
+import { Months } from '../../const';
 import { ReviewProps } from '../../types/review.props';
 
 type ReviewsProps = {
@@ -7,7 +7,7 @@ type ReviewsProps = {
 
 function Review({ review }: ReviewsProps): JSX.Element {
   const date = new Date(review.date);
-  const month = date.getMonth() + 1 as keyof typeof months;
+  const month = date.getMonth() + 1 as keyof typeof Months;
   const day = date.getUTCDate();
   const year = date.getFullYear();
   return (
@@ -16,7 +16,7 @@ function Review({ review }: ReviewsProps): JSX.Element {
         <p className="review__text">{review.comment}</p>
         <footer className="review__details">
           <cite className="review__author">{review.user}</cite>
-          <time className="review__date" dateTime={review.date}>{`${months[month]} ${day}, ${year}`}</time>
+          <time className="review__date" dateTime={review.date}>{`${Months[month]} ${day}, ${year}`}</time>
         </footer>
       </blockquote>
 

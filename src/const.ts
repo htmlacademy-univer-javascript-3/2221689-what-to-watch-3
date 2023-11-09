@@ -1,19 +1,19 @@
-export enum AppRoute {
-    Main = '/',
-    SignIn = '/login',
-    MyList = '/mylist',
-    Film = '/films/:id',
-    AddReview = '/films/:id/review',
-    Player = '/player/:id'
-}
+export const AppRoute = {
+  Main: '/',
+  SignIn: '/login',
+  MyList: '/mylist',
+  Film: '/films/:id',
+  AddReview: '/films/:id/review',
+  Player: '/player/:id'
+};
 
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
-}
+export const AuthorizationStatus = {
+  Auth: 'AUTH',
+  NoAuth: 'NO_AUTH',
+  Unknown: 'UNKNOWN',
+};
 
-export const ratingMap = {
+export const RatingMap = {
   '10': 'Awesome',
   '9': 'Very good',
   '8': 'Very good',
@@ -26,7 +26,7 @@ export const ratingMap = {
   '1': 'Bad'
 };
 
-export const months = {
+export const Months = {
   1: 'January',
   2: 'February',
   3: 'March',
@@ -46,3 +46,7 @@ export const TabsInfo = {
   Details: 'Details',
   Reviews: 'Reviews'
 };
+
+export const MAX_COUNT_SHOWN_FILMS = 8;
+
+export const DEFAULT_GENRE = 'All genres';
