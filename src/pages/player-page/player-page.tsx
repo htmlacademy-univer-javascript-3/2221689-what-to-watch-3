@@ -8,7 +8,7 @@ function PlayerPage({ filmCards }: PlayerPageProps): JSX.Element {
 
   return (
     <div className="player">
-      <video src={filmCard.previewVideoLink} className="player__video" poster={filmCard.posterImage}></video>
+      <video src={filmCard.previewVideoLink} className="player__video" poster={filmCard.previewImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 

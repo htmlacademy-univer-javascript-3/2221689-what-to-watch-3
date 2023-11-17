@@ -4,7 +4,8 @@ export const AppRoute = {
   MyList: '/mylist',
   Film: '/films/:id',
   AddReview: '/films/:id/review',
-  Player: '/player/:id'
+  Player: '/player/:id',
+  NotFound: '/404'
 };
 
 export enum AuthorizationStatus {
@@ -13,18 +14,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const RatingMap = {
-  '10': 'Awesome',
-  '9': 'Very good',
-  '8': 'Very good',
-  '7': 'Good',
-  '6': 'Good',
-  '5': 'Good',
-  '4': 'Normal',
-  '3': 'Normal',
-  '2': 'Bad',
-  '1': 'Bad'
-};
+export const RatingValues = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 export const Months = {
   1: 'January',
@@ -40,11 +30,25 @@ export const Months = {
   11: 'November',
   12: 'December'
 };
-
 export const TabsInfo = {
   Overview: 'Overview',
   Details: 'Details',
   Reviews: 'Reviews'
+};
+
+export const APIRoute = {
+  Films: '/films',
+  Login: '/login',
+  Logout: '/logout',
+  Favorite: '/favorite',
+  Comments: '/comments'
+};
+
+export const RequestStatus = {
+  Idle: 'Idle',
+  Pending: 'Pending',
+  Success: 'Succsess',
+  Error: 'Error'
 };
 
 export const MAX_COUNT_SHOWN_FILMS = 8;

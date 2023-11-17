@@ -1,5 +1,5 @@
 export type ReviewProps = {
-    id: number;
+    id: string;
     date: string;
     user: string;
     comment: string;

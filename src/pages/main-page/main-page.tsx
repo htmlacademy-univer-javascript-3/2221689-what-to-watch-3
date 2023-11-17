@@ -8,14 +8,21 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import { useEffect } from 'react';
 import { setDefaultCountShownFilms } from '../../store/actions';
+import { fetchFilms } from '../../store/api-actions';
+import { RequestStatus } from '../../const';
+import { Loader } from '../../components/loader/loader';
+import { ErrorLoad } from '../../components/error-load/error-load';
+import Header from '../../components/header/header';
 
 function MainPage({ promoFilm }: MainPageProps): JSX.Element {
   const films = useAppSelector((state) => state.filmCards);
+  const fetchingStatus = useAppSelector((state) => state.filmsFetchingStatus);
   const filmsByGenre = useAppSelector((state) => state.filmCardsByGenre);
   const maxShownCountFilm = useAppSelector((state) => state.maxShownFilmCount);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(fetchFilms());
     dispatch(setDefaultCountShownFilms());
   }, [dispatch]);
 
@@ -27,27 +34,7 @@ function MainPage({ promoFilm }: MainPageProps): JSX.Element {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header film-card__head">
-          <div className="logo">
-            <Link className="logo__link" to="/">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to={'/login'} className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
-        </header>
+        <Header/>
         <PromoFilm
           titleFilm={promoFilm.titleFilm}
           genreFilm={promoFilm.genreFilm}
@@ -57,12 +44,15 @@ function MainPage({ promoFilm }: MainPageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <GenreList genres={getGenreList(films)}/>
-
-          <FilmsList filmCards={filmsByGenre} filmCount={maxShownCountFilm}/>
-
-          {maxShownCountFilm < filmsByGenre.length && <ShowMoreButton/>}
+          {fetchingStatus === RequestStatus.Pending && <Loader />}
+          {fetchingStatus === RequestStatus.Success && (
+            <>
+              <GenreList genres={getGenreList(films)} />
+              <FilmsList filmCards={filmsByGenre} filmCount={maxShownCountFilm} />
+              {maxShownCountFilm < films.length && <ShowMoreButton />}
+            </>
+          )}
+          {fetchingStatus === RequestStatus.Error && <ErrorLoad />}
         </section>
 
         <footer className="page-footer">

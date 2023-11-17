@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import { FilmCardProps } from '../../types/film-card.props';
-import { ReviewProps } from '../../types/review.props';
 import FilmOverview from '../film-overview/film-overview';
 import { TabsInfo } from '../../const';
 import FilmReview from '../film-review/film-review';
 import FilmDetails from '../film-details/film-details';
 import classNames from 'classnames';
+import { FullFilmCard } from '../../types/full-film-card.props';
 
 type TabsProps = {
-    filmCard: FilmCardProps;
-    reviews: ReviewProps[];
+    filmCard: FullFilmCard;
 }
 
-function Tabs({ filmCard, reviews }: TabsProps): JSX.Element {
+function Tabs({ filmCard }: TabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState(TabsInfo.Overview);
 
   const isOverview = activeTab === TabsInfo.Overview;
@@ -28,7 +26,7 @@ function Tabs({ filmCard, reviews }: TabsProps): JSX.Element {
       case TabsInfo.Overview:
         return <FilmOverview filmCard={filmCard}/>;
       case TabsInfo.Reviews:
-        return <FilmReview reviews={reviews}/>;
+        return <FilmReview filmId={filmCard.id}/>;
       case TabsInfo.Details:
         return <FilmDetails filmCard={filmCard}/>;
     }
