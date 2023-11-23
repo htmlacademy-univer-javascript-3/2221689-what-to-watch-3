@@ -19,7 +19,9 @@ export const filmCards = [
     genre: 'Fantasy',
     released: 2018,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '2',
@@ -41,7 +43,9 @@ export const filmCards = [
     genre: 'Drama',
     released: 2018,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '3',
@@ -63,7 +67,9 @@ export const filmCards = [
     genre: 'Drama',
     released: 2015,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '4',
@@ -85,7 +91,9 @@ export const filmCards = [
     genre: 'Drama',
     released: 2014,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '5',
@@ -107,7 +115,9 @@ export const filmCards = [
     genre: 'Drama',
     released: 2011,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '6',
@@ -129,7 +139,9 @@ export const filmCards = [
     genre: 'Comedy',
     released: 2019,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '7',
@@ -151,7 +163,9 @@ export const filmCards = [
     genre: 'Action',
     released: 2015,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '8',
@@ -173,7 +187,9 @@ export const filmCards = [
     genre: 'Comedy',
     released: 2003,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '9',
@@ -195,7 +211,9 @@ export const filmCards = [
     genre: 'Drama',
     released: 2011,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '10',
@@ -217,7 +235,9 @@ export const filmCards = [
     genre: 'Comedy',
     released: 2019,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '11',
@@ -239,7 +259,9 @@ export const filmCards = [
     genre: 'Action',
     released: 2015,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   },
   {
     id: '12',
@@ -261,6 +283,8 @@ export const filmCards = [
     genre: 'Comedy',
     released: 2003,
     isFavorite: false,
-    isActive: ''
+    isActive: '',
+    onMouseEnter: () => '',
+    onMouseLeave: () => ''
   }
 ];

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenre, getFilmCardsByGenre, setDefaultCountShownFilms } from '../../store/actions';
+import { getGenre } from '../../store/film-data/selectors';
+import { changeGenre, setDefaultCountShownFilms } from '../../store/film-data/film-data';
 
 type GenreList = {
     genres: string[];
@@ -8,7 +9,7 @@ type GenreList = {
 
 function GenreList({ genres }: GenreList) {
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector(getGenre);
 
   return (
     <ul className="catalog__genres-list">
@@ -16,7 +17,6 @@ function GenreList({ genres }: GenreList) {
         <li key={genre} className={classNames('catalog__genres-item', activeGenre === genre && 'catalog__genres-item--active')}>
           <a onClick={() => {
             dispatch(changeGenre({ genre }));
-            dispatch(getFilmCardsByGenre());
             dispatch(setDefaultCountShownFilms());
           }} className="catalog__genres-link"
           >{genre}

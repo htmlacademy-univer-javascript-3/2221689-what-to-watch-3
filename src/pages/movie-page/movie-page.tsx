@@ -8,13 +8,16 @@ import { AuthorizationStatus, RequestStatus } from '../../const';
 import { Loader } from '../../components/loader/loader';
 import Header from '../../components/header/header';
 import NotFoundPage from '../not-found-page/not-found-page';
+import { getFilm, getFilmFetchingStatus } from '../../store/film-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import Footer from '../../components/footer/footer';
 
 export function MoviePage(): JSX.Element {
   const navigate = useNavigate();
   const { id } = useParams();
-  const fetchingStatusFilm = useAppSelector((state) => state.filmFetchingStatus);
-  const film = useAppSelector((state) => state.film);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const fetchingStatusFilm = useAppSelector(getFilmFetchingStatus);
+  const film = useAppSelector(getFilm);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (id) {
@@ -85,19 +88,7 @@ export function MoviePage(): JSX.Element {
               <RelatedFilms filmCard={film}/>
             </section>
 
-            <footer className="page-footer">
-              <div className="logo">
-                <Link to="/" className="logo__link logo__link--light">
-                  <span className="logo__letter logo__letter--1">W</span>
-                  <span className="logo__letter logo__letter--2">T</span>
-                  <span className="logo__letter logo__letter--3">W</span>
-                </Link>
-              </div>
-
-              <div className="copyright">
-                <p>© 2019 What to watch Ltd.</p>
-              </div>
-            </footer>
+            <Footer/>
           </div>
         </>}
 

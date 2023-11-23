@@ -1,28 +1,29 @@
 import PromoFilm from '../../components/promo-film/promo-film';
 import { MainPageProps } from '../../types/main-page.props';
 import FilmsList from '../../components/films-list/films-list';
-import { Link } from 'react-router-dom';
 import GenreList from '../../components/genre-list/genre-list';
 import getGenreList from '../../utils/get-genre-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import { useEffect } from 'react';
-import { setDefaultCountShownFilms } from '../../store/actions';
-import { fetchFilms } from '../../store/api-actions';
 import { RequestStatus } from '../../const';
 import { Loader } from '../../components/loader/loader';
 import { ErrorLoad } from '../../components/error-load/error-load';
 import Header from '../../components/header/header';
+import { getFilmsFetchingStatus, getFilms, getMaxShownFilmCount } from '../../store/film-data/selectors';
+import { setDefaultCountShownFilms } from '../../store/film-data/film-data';
+import Footer from '../../components/footer/footer';
+import useFilmsByGenre from '../../utils/get-all-films-by-genre';
 
 function MainPage({ promoFilm }: MainPageProps): JSX.Element {
-  const films = useAppSelector((state) => state.filmCards);
-  const fetchingStatus = useAppSelector((state) => state.filmsFetchingStatus);
-  const filmsByGenre = useAppSelector((state) => state.filmCardsByGenre);
-  const maxShownCountFilm = useAppSelector((state) => state.maxShownFilmCount);
+  const films = useAppSelector(getFilms);
+  const fetchingStatus = useAppSelector(getFilmsFetchingStatus);
+  const filmsByGenre = useFilmsByGenre(films);
+  const maxShownCountFilm = useAppSelector(getMaxShownFilmCount);
+  const genres = getGenreList(films);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFilms());
     dispatch(setDefaultCountShownFilms());
   }, [dispatch]);
 
@@ -47,7 +48,7 @@ function MainPage({ promoFilm }: MainPageProps): JSX.Element {
           {fetchingStatus === RequestStatus.Pending && <Loader />}
           {fetchingStatus === RequestStatus.Success && (
             <>
-              <GenreList genres={getGenreList(films)} />
+              <GenreList genres={genres}/>
               <FilmsList filmCards={filmsByGenre} filmCount={maxShownCountFilm} />
               {maxShownCountFilm < films.length && <ShowMoreButton />}
             </>
@@ -55,19 +56,7 @@ function MainPage({ promoFilm }: MainPageProps): JSX.Element {
           {fetchingStatus === RequestStatus.Error && <ErrorLoad />}
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to={'/'} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );

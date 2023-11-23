@@ -5,14 +5,15 @@ import { ErrorLoad } from '../error-load/error-load';
 import { Loader } from '../loader/loader';
 import Review from '../review/review';
 import { fetchReviews } from '../../store/api-actions';
+import { getReviews, getReviewsFetchingStatus } from '../../store/reviews-data/selectors';
 
 type FilmReviewProps = {
     filmId: string;
 }
 
 function FilmReview({ filmId }: FilmReviewProps): JSX.Element {
-  const reviews = useAppSelector((state) => state.reviews);
-  const fetchingStatus = useAppSelector((state) => state.reviewsFetchingStatus);
+  const reviews = useAppSelector(getReviews);
+  const fetchingStatus = useAppSelector(getReviewsFetchingStatus);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

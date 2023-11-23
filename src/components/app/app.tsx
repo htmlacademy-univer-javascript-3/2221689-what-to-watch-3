@@ -14,6 +14,7 @@ import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import { useAppSelector } from '../../hooks';
 import { Loader } from '../loader/loader';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type AppScreenProps = {
   promoFilm: PromoFilmProps;
@@ -21,7 +22,7 @@ type AppScreenProps = {
 }
 
 function App({ promoFilm, filmCards }: AppScreenProps): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return (
       <Loader />
