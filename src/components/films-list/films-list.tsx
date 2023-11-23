@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { FilmCardProps } from '../../types/film-card.props';
 import FilmCard from '../film-card/film-card';
+import React from 'react';
 
 type FilmsListProps = {
   filmCards: FilmCardProps[];
@@ -15,25 +16,19 @@ function FilmsList({ filmCards, filmCount }: FilmsListProps): JSX.Element {
   }
   const films = filmCount ? filmCards.slice(0, filmCount) : filmCards;
 
-  function handleMouseEnter(filmId: string) {
+  const handleMouseEnter = React.useCallback((filmId: string) => {
     timerRef.current = setTimeout(() => setActiveFilm(filmId), 1000);
-  }
+  },[]);
 
-  function handleMouseLeave() {
+  const handleMouseLeave = React.useCallback(() => {
     setActiveFilm('');
     clearTimeout(timerRef.current as NodeJS.Timeout);
-  }
+  },[]);
 
   return (
     <div className="catalog__films-list">
       {films.map((film) => (
-        <article key={film.id} className="small-film-card catalog__films-card" onMouseEnter={() => {
-          handleMouseEnter(film.id);
-        }}
-        onMouseLeave={handleMouseLeave}
-        >
-          <FilmCard {...film} isActive={activeFilm}/>
-        </article>
+        <FilmCard {...film} isActive={activeFilm} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} key={film.id}/>
       )
       )}
     </div>

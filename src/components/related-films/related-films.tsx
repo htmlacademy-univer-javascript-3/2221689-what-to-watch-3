@@ -6,14 +6,15 @@ import { fetchReleatedFilms } from '../../store/api-actions';
 import { RequestStatus } from '../../const';
 import { Loader } from '../loader/loader';
 import { ErrorLoad } from '../error-load/error-load';
+import { getRelatedFilms, getRelatedFilmsFetchingStatus } from '../../store/film-data/selectors';
 
 type RelatedFilmsProps = {
     filmCard: FullFilmCard;
 }
 
 function RelatedFilms({ filmCard }: RelatedFilmsProps): JSX.Element {
-  const fetchingStatus = useAppSelector((state) => state.relatedFilmsFetchingStatus);
-  const relatedFilms = useAppSelector((state) => state.relatedFilms);
+  const fetchingStatus = useAppSelector(getRelatedFilmsFetchingStatus);
+  const relatedFilms = useAppSelector(getRelatedFilms);
   const dispatch = useAppDispatch();
 
   const [activeFilm, setActiveFilm] = useState<string>('');

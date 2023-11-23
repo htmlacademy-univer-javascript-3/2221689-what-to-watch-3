@@ -5,4 +5,6 @@ export type FilmCardProps = {
     previewVideoLink: string;
     genre: string;
     isActive: string;
+    onMouseEnter: (filmId: string) => void;
+    onMouseLeave: () => void;
 }

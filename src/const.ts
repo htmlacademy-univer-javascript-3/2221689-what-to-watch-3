@@ -54,3 +54,9 @@ export const RequestStatus = {
 export const MAX_COUNT_SHOWN_FILMS = 8;
 
 export const DEFAULT_GENRE = 'All genres';
+
+export enum NameSpace {
+  Films= 'FILMS',
+  Comments= 'COMMENTS',
+  User= 'USER'
+}
