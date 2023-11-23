@@ -1,5 +1,5 @@
 import { DEFAULT_GENRE } from '../const';
-import { useAppSelector } from '../hooks';
+import { useAppSelector } from '.';
 import { getGenre } from '../store/film-data/selectors';
 import { FilmCardProps } from '../types/film-card.props';
 

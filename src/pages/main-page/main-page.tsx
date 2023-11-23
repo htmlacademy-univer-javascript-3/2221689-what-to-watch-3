@@ -13,7 +13,7 @@ import Header from '../../components/header/header';
 import { getFilmsFetchingStatus, getFilms, getMaxShownFilmCount } from '../../store/film-data/selectors';
 import { setDefaultCountShownFilms } from '../../store/film-data/film-data';
 import Footer from '../../components/footer/footer';
-import useFilmsByGenre from '../../utils/get-all-films-by-genre';
+import useFilmsByGenre from '../../hooks/use-films-by-genre';
 
 function MainPage({ promoFilm }: MainPageProps): JSX.Element {
   const films = useAppSelector(getFilms);
