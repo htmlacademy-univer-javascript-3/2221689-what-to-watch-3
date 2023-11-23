@@ -1,6 +1,7 @@
 import { PromoFilmProps } from '../../types/promo-film.props';
 
 function PromoFilm(promoFilmProps: PromoFilmProps): JSX.Element {
+  // const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">

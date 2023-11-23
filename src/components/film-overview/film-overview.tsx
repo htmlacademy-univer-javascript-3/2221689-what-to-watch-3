@@ -1,8 +1,8 @@
-import { FilmCardProps } from '../../types/film-card.props';
+import { FullFilmCard } from '../../types/full-film-card.props';
 import getRatingName from '../../utils/get-rating-name';
 
 type FilmOverviewProps = {
-    filmCard: FilmCardProps;
+    filmCard: FullFilmCard;
 }
 
 function FilmOverview({ filmCard }: FilmOverviewProps): JSX.Element {

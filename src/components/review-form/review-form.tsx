@@ -1,9 +1,14 @@
-import { ChangeEvent, Fragment, useState } from 'react';
-import { RatingMap } from '../../const';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { RatingValues } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { reviewAction } from '../../store/api-actions';
+import { useParams } from 'react-router-dom';
 
 function ReviewForm(): JSX.Element {
+  const {id} = useParams();
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
+  const dispatch = useAppDispatch();
 
   function handleInputChange(evt: ChangeEvent<HTMLInputElement>) {
     setRating(evt.target.value);
@@ -13,31 +18,36 @@ function ReviewForm(): JSX.Element {
     setComment(evt.target.value);
   }
 
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (rating && comment && comment.trim() !== '') {
+      dispatch(reviewAction({filmId: id as string, comment, rating: Number(rating)}));
+    }
+  };
+
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form" onSubmit={handleSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            {Object.entries(RatingMap)
-              .reverse()
-              .map(([score]) => (
-                <Fragment key={score}>
-                  <input
-                    className="rating__input"
-                    id={`star-${score}`}
-                    type="radio"
-                    name="rating"
-                    value={score}
-                    checked={rating === score}
-                    onChange={handleInputChange}
-                  />
-                  <label
-                    className="rating__label"
-                    htmlFor={`star-${score}`}
-                  >{`Rating ${score}`}
-                  </label>
-                </Fragment>
-              ))}
+            {RatingValues.map((value) => (
+              <Fragment key={value}>
+                <input
+
+                  className="rating__input"
+                  id={`star-${value}`}
+                  type="radio"
+                  name="rating"
+                  value={value}
+                  onChange={handleInputChange}
+                />
+                <label
+                  className="rating__label"
+                  htmlFor={`star-${value}`}
+                >{`Rating ${value}`}
+                </label>
+              </Fragment>
+            ))}
           </div>
         </div>
 

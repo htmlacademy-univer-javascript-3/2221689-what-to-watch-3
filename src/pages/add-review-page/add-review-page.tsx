@@ -1,17 +1,32 @@
 import { Link, useParams } from 'react-router-dom';
-import { AddReviewPageProps } from '../../types/add-review-page.props';
-import { FilmCardProps } from '../../types/film-card.props';
 import ReviewForm from '../../components/review-form/review-form';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchFilm } from '../../store/api-actions';
+import { RequestStatus } from '../../const';
+import { Loader } from '../../components/loader/loader';
+import NotFoundPage from '../not-found-page/not-found-page';
 
-function AddReviewPage({ filmCards }: AddReviewPageProps): JSX.Element {
+function AddReviewPage(): JSX.Element {
   const {id} = useParams();
-  const filmCard = filmCards.find((filmCardItem) => filmCardItem.id === id) as FilmCardProps;
+  const fetchingStatusFilm = useAppSelector((state) => state.filmFetchingStatus);
+  const film = useAppSelector((state) => state.film);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilm({filmId: id}));
+    }
+  }, [id, dispatch]);
 
   return (
+    <>
+      {fetchingStatusFilm === RequestStatus.Pending && <Loader/>}
+      {fetchingStatusFilm === RequestStatus.Error && <NotFoundPage/>}
+      {fetchingStatusFilm === RequestStatus.Success &&
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={filmCard.posterImage} alt={filmCard.title} />
+          <img src={film.posterImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +43,7 @@ function AddReviewPage({ filmCards }: AddReviewPageProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id as string}`} className="breadcrumbs__link">{filmCard.title}</Link>
+                <Link to={`/films/${id as string}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -49,12 +64,13 @@ function AddReviewPage({ filmCards }: AddReviewPageProps): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={filmCard.posterImage} alt={`${filmCard.title} poster`} width="218" height="327" />
+          <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
         </div>
       </div>
 
       <ReviewForm/>
-    </section>
+    </section>}
+    </>
   );
 }
 
