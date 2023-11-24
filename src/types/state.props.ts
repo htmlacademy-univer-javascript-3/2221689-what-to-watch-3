@@ -2,6 +2,7 @@ import { AuthorizationStatus } from '../const';
 import { store } from '../store';
 import { FilmCardProps } from './film-card.props';
 import { FullFilmCard } from './full-film-card.props';
+import { PromoFilmProps } from './promo-film.props';
 import { ReviewProps } from './review.props';
 
 export type UserProcess = {
@@ -22,6 +23,15 @@ export type FilmData = {
     filmFetchingStatus: string;
     relatedFilms: FilmCardProps[];
     relatedFilmsFetchingStatus: string;
+    promoFilm: PromoFilmProps;
+    promoFilmFetchingStatus: string;
+}
+
+export type MyListProcess = {
+    favoriteFilms: FilmCardProps[];
+    favoriteFilmsCount: number;
+    favoriteFilmsFetchingStatus: string;
+    changeFavoriteFilmsFetchingStatus: string;
 }
 
 export type State = ReturnType<typeof store.getState>;

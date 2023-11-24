@@ -7,6 +7,7 @@ import { RequestStatus } from '../../const';
 import { Loader } from '../loader/loader';
 import { ErrorLoad } from '../error-load/error-load';
 import { getRelatedFilms, getRelatedFilmsFetchingStatus } from '../../store/film-data/selectors';
+import { FilmCardProps } from '../../types/film-card.props';
 
 type RelatedFilmsProps = {
     filmCard: FullFilmCard;
@@ -38,14 +39,8 @@ function RelatedFilms({ filmCard }: RelatedFilmsProps): JSX.Element {
       {fetchingStatus === RequestStatus.Error && <ErrorLoad/>}
       {fetchingStatus === RequestStatus.Success &&
     <div className="catalog__films-list">
-      {relatedFilms.map((film) => (
-        <article key={film.id} className="small-film-card catalog__films-card" onMouseEnter={() => {
-          handleMouseEnter(film.id);
-        }}
-        onMouseLeave={handleMouseLeave}
-        >
-          <FilmCard {...film} isActive={activeFilm}/>
-        </article>
+      {relatedFilms.map((film: FilmCardProps) => (
+        <FilmCard {...film} isActive={activeFilm} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} key={film.id}/>
       )
       )}
     </div>}

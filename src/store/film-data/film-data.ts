@@ -2,7 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_GENRE, MAX_COUNT_SHOWN_FILMS, NameSpace, RequestStatus } from '../../const';
 import { FullFilmCard } from '../../types/full-film-card.props';
 import { FilmData } from '../../types/state.props';
-import { fetchFilm, fetchFilms, fetchReleatedFilms } from '../api-actions';
+import { fetchFilm, fetchFilms, fetchPromoFilm, fetchReleatedFilms } from '../api-actions';
+import { PromoFilmProps } from '../../types/promo-film.props';
 
 const initialState: FilmData = {
   genre: DEFAULT_GENRE,
@@ -12,7 +13,9 @@ const initialState: FilmData = {
   filmsFetchingStatus: RequestStatus.Idle,
   filmFetchingStatus: RequestStatus.Idle,
   relatedFilms: [],
-  relatedFilmsFetchingStatus: RequestStatus.Idle
+  relatedFilmsFetchingStatus: RequestStatus.Idle,
+  promoFilm: {} as PromoFilmProps,
+  promoFilmFetchingStatus: RequestStatus.Idle
 };
 
 export const filmData = createSlice({
@@ -60,6 +63,16 @@ export const filmData = createSlice({
       })
       .addCase(fetchReleatedFilms.rejected, (state) => {
         state.relatedFilmsFetchingStatus = RequestStatus.Error;
+      })
+      .addCase(fetchPromoFilm.pending, (state) => {
+        state.promoFilmFetchingStatus = RequestStatus.Pending;
+      })
+      .addCase(fetchPromoFilm.fulfilled, (state, action) => {
+        state.promoFilmFetchingStatus = RequestStatus.Success;
+        state.promoFilm = action.payload;
+      })
+      .addCase(fetchPromoFilm.rejected, (state) => {
+        state.promoFilmFetchingStatus = RequestStatus.Error;
       });
   }
 });

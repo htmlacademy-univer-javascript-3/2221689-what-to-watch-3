@@ -9,3 +9,5 @@ export const getFilmsFetchingStatus = (state: State)=> state[NameSpace.Films].fi
 export const getFilmFetchingStatus = (state: State)=> state[NameSpace.Films].filmFetchingStatus;
 export const getRelatedFilms = (state: State)=> state[NameSpace.Films].relatedFilms;
 export const getRelatedFilmsFetchingStatus = (state: State)=> state[NameSpace.Films].relatedFilmsFetchingStatus;
+export const getPromoFilmFetchingStatus = (state: State)=> state[NameSpace.Films].promoFilmFetchingStatus;
+export const getPromoFilm = (state: State)=> state[NameSpace.Films].promoFilm;
