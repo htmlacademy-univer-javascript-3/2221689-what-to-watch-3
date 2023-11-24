@@ -11,6 +11,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import { getFilm, getFilmFetchingStatus } from '../../store/film-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import Footer from '../../components/footer/footer';
+import FavoriteStatusButton from '../../components/favorite-status-button/favorite-status-button';
 
 export function MoviePage(): JSX.Element {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export function MoviePage(): JSX.Element {
   const fetchingStatusFilm = useAppSelector(getFilmFetchingStatus);
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (id) {
@@ -33,7 +35,7 @@ export function MoviePage(): JSX.Element {
           <section className="film-card film-card--full">
             <div className="film-card__hero">
               <div className="film-card__bg">
-                <img src={film.posterImage} alt={film.name} />
+                <img src={film.backgroundImage} alt={film.name} />
               </div>
 
               <h1 className="visually-hidden">WTW</h1>
@@ -55,13 +57,7 @@ export function MoviePage(): JSX.Element {
                       </svg>
                       <span>Play</span>
                     </button>
-                    <button className="btn btn--list film-card__button" type="button" onClick={() => navigate('/mylist')}>
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"></use>
-                      </svg>
-                      <span>My list</span>
-                      <span className="film-card__count">9</span>
-                    </button>
+                    <FavoriteStatusButton filmId={film.id} isFavorite={film.isFavorite}/>
                     {authorizationStatus === AuthorizationStatus.Auth
                 && <Link to={`/films/${film.id}/review`} className="btn film-card__button">Add review</Link>}
                   </div>

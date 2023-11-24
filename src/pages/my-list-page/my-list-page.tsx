@@ -1,51 +1,45 @@
-import { MyListPageProps } from '../../types/my-list-page.props';
 import FilmsList from '../../components/films-list/films-list';
-import { Link } from 'react-router-dom';
+import Logo from '../../components/logo/logo';
+import UserBlock from '../../components/user-block/user-block';
+import Footer from '../../components/footer/footer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFavoriteFilms, getFavoriteFilmsCount, getFavoriteFilmsFetchingStatus } from '../../store/my-list-process/selectors';
+import { useEffect } from 'react';
+import { fetchFavoriteFilms } from '../../store/api-actions';
+import { RequestStatus } from '../../const';
+import { Loader } from '../../components/loader/loader';
+import { ErrorLoad } from '../../components/error-load/error-load';
 
-function MyListPage({ filmCards }: MyListPageProps): JSX.Element {
+function MyListPage(): JSX.Element {
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const favoriteFilmsCount = useAppSelector(getFavoriteFilmsCount);
+  const fetchingStatusFavoriteFilms = useAppSelector(getFavoriteFilmsFetchingStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteFilms());
+  }, [dispatch]);
+
   return (
-    <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to={'/'} className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+    <>
+      {fetchingStatusFavoriteFilms === RequestStatus.Success &&
+      <div className="user-page">
+        <header className="page-header user-page__head">
+          <Logo/>
+          <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteFilmsCount}</span></h1>
+          <UserBlock/>
+        </header>
 
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </li>
-          <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
-          </li>
-        </ul>
-      </header>
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <FilmsList filmCards={favoriteFilms}/>
+        </section>
 
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmsList filmCards={filmCards}/>
-      </section>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <Link to={'/'} className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
-    </div>
+        <Footer/>
+      </div>}
+      {fetchingStatusFavoriteFilms === RequestStatus.Pending && <Loader/>}
+      {fetchingStatusFavoriteFilms === RequestStatus.Error && <ErrorLoad/>}
+    </>
   );
 }
 

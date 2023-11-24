@@ -10,6 +10,7 @@ import { AuthInfo } from '../types/auth-info.props';
 import { FullFilmCard } from '../types/full-film-card.props';
 import { ReviewProps } from '../types/review.props';
 import { addReview } from './reviews-data/reviews-data';
+import { PromoFilmProps } from '../types/promo-film.props';
 
 export const fetchFilms = createAsyncThunk<FilmCardProps[], undefined, {
     dispatch: AppDispatch;
@@ -57,6 +58,42 @@ export const fetchReviews = createAsyncThunk<ReviewProps[], { filmId: string }, 
     const { data } = await api.get<ReviewProps[]>(`comments/${filmId}`);
     return data;
   }
+);
+
+export const fetchPromoFilm = createAsyncThunk<PromoFilmProps, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}> (
+  'films/getPromoFilm',
+  async (_arg, {extra: api}) => {
+    const { data } = await api.get<PromoFilmProps>(`${APIRoute.Promo}`);
+    return data;
+  }
+);
+
+export const fetchFavoriteFilms = createAsyncThunk<FilmCardProps[], undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}> (
+  'favorite/getFavoriteFilms',
+  async (_arg, {extra: api}) => {
+    const { data } = await api.get<FilmCardProps[]>(`${APIRoute.Favorite}`);
+    return data;
+  }
+);
+
+export const changeFavoriteFilms = createAsyncThunk<FullFilmCard, {filmId: string; status: number}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}> (
+  'favorite/changeFavoriteFilms',
+  async ({filmId, status}, { extra: api}) => {
+    const {data} = await api.post<FullFilmCard>(`${APIRoute.Favorite}/${filmId}/${status}`, {filmId, status});
+    return data;
+  },
 );
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {

@@ -1,5 +1,10 @@
 export type PromoFilmProps = {
-    titleFilm: string;
-    genreFilm: string;
-    yearFilm: string;
-  }
+  id: string;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  videoLink: string;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
+}

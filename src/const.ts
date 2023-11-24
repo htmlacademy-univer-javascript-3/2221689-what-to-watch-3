@@ -41,7 +41,8 @@ export const APIRoute = {
   Login: '/login',
   Logout: '/logout',
   Favorite: '/favorite',
-  Comments: '/comments'
+  Comments: '/comments',
+  Promo: '/promo'
 };
 
 export const RequestStatus = {
@@ -55,8 +56,13 @@ export const MAX_COUNT_SHOWN_FILMS = 8;
 
 export const DEFAULT_GENRE = 'All genres';
 
+export const SECONDS_IN_HOUR = 3600;
+
+export const SECONDS_IN_MINUTE = 60;
+
 export enum NameSpace {
   Films= 'FILMS',
   Comments= 'COMMENTS',
-  User= 'USER'
+  User= 'USER',
+  MyList = 'MYLIST'
 }

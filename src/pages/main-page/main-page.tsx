@@ -1,5 +1,4 @@
 import PromoFilm from '../../components/promo-film/promo-film';
-import { MainPageProps } from '../../types/main-page.props';
 import FilmsList from '../../components/films-list/films-list';
 import GenreList from '../../components/genre-list/genre-list';
 import getGenreList from '../../utils/get-genre-list';
@@ -10,37 +9,40 @@ import { RequestStatus } from '../../const';
 import { Loader } from '../../components/loader/loader';
 import { ErrorLoad } from '../../components/error-load/error-load';
 import Header from '../../components/header/header';
-import { getFilmsFetchingStatus, getFilms, getMaxShownFilmCount } from '../../store/film-data/selectors';
+import { getFilmsFetchingStatus, getFilms, getMaxShownFilmCount, getPromoFilm, getPromoFilmFetchingStatus } from '../../store/film-data/selectors';
 import { setDefaultCountShownFilms } from '../../store/film-data/film-data';
 import Footer from '../../components/footer/footer';
 import useFilmsByGenre from '../../hooks/use-films-by-genre';
+import { fetchPromoFilm } from '../../store/api-actions';
 
-function MainPage({ promoFilm }: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
   const films = useAppSelector(getFilms);
   const fetchingStatus = useAppSelector(getFilmsFetchingStatus);
+  const fetchingStatusPromoFilm = useAppSelector(getPromoFilmFetchingStatus);
   const filmsByGenre = useFilmsByGenre(films);
   const maxShownCountFilm = useAppSelector(getMaxShownFilmCount);
   const genres = getGenreList(films);
+  const promoFilm = useAppSelector(getPromoFilm);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(fetchPromoFilm());
     dispatch(setDefaultCountShownFilms());
   }, [dispatch]);
 
   return (
     <>
+
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
         <Header/>
-        <PromoFilm
-          titleFilm={promoFilm.titleFilm}
-          genreFilm={promoFilm.genreFilm}
-          yearFilm={promoFilm.yearFilm}
-        />
+        {fetchingStatusPromoFilm === RequestStatus.Pending && <Loader/>}
+        {fetchingStatusPromoFilm === RequestStatus.Success && <PromoFilm promoFilm={promoFilm}/>}
+        {fetchingStatusPromoFilm === RequestStatus.Error && <ErrorLoad/>}
       </section>
       <div className="page-content">
         <section className="catalog">
