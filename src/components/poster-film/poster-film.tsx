@@ -5,7 +5,7 @@ type PosterFilmProps = {
 
 function PosterFilm({ srcImage, title }: PosterFilmProps): JSX.Element {
   return (
-    <img src={srcImage} alt={title} width="280" height="175" />
+    <img data-testid='poster' src={srcImage} alt={title} width="280" height="175" />
   );
 }
 

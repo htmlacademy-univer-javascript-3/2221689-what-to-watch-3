@@ -1,20 +1,19 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { DEFAULT_GENRE, MAX_COUNT_SHOWN_FILMS, NameSpace, RequestStatus } from '../../const';
-import { FullFilmCard } from '../../types/full-film-card.props';
+import { DEFAULT_GENRE, NameSpace, RequestStatus } from '../../const';
+import { FullFilmCard } from '../../types/full-film-card';
 import { FilmData } from '../../types/state.props';
 import { fetchFilm, fetchFilms, fetchPromoFilm, fetchReleatedFilms } from '../api-actions';
-import { PromoFilmProps } from '../../types/promo-film.props';
+import { PromoFilmType } from '../../types/promo-film';
 
 const initialState: FilmData = {
   genre: DEFAULT_GENRE,
   filmCards: [],
   film: {} as FullFilmCard,
-  maxShownFilmCount: MAX_COUNT_SHOWN_FILMS,
   filmsFetchingStatus: RequestStatus.Idle,
   filmFetchingStatus: RequestStatus.Idle,
   relatedFilms: [],
   relatedFilmsFetchingStatus: RequestStatus.Idle,
-  promoFilm: {} as PromoFilmProps,
+  promoFilm: {} as PromoFilmType,
   promoFilmFetchingStatus: RequestStatus.Idle
 };
 
@@ -25,12 +24,6 @@ export const filmData = createSlice({
     changeGenre: (state, action: PayloadAction<{genre:string}>) => {
       state.genre = action.payload.genre;
     },
-    changeCountShownFilms: (state) => {
-      state.maxShownFilmCount += MAX_COUNT_SHOWN_FILMS;
-    },
-    setDefaultCountShownFilms: (state) => {
-      state.maxShownFilmCount = MAX_COUNT_SHOWN_FILMS;
-    }
   },
   extraReducers(builder) {
     builder
@@ -77,4 +70,4 @@ export const filmData = createSlice({
   }
 });
 
-export const {changeGenre, changeCountShownFilms, setDefaultCountShownFilms} = filmData.actions;
+export const {changeGenre} = filmData.actions;

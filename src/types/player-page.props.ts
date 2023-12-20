@@ -1,5 +1,5 @@
-import { FilmCardProps } from './film-card.props';
+import { FilmCardType } from './film-card.type';
 
 export type PlayerPageProps = {
-  filmCards: FilmCardProps[];
+  filmCards: FilmCardType[];
 }

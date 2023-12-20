@@ -1,34 +1,36 @@
 import { AuthorizationStatus } from '../const';
 import { store } from '../store';
-import { FilmCardProps } from './film-card.props';
-import { FullFilmCard } from './full-film-card.props';
-import { PromoFilmProps } from './promo-film.props';
+import { AuthInfo } from './auth-info.props';
+import { FilmCardType } from './film-card.type';
+import { FullFilmCard } from './full-film-card';
+import { PromoFilmType } from './promo-film';
 import { ReviewProps } from './review.props';
 
 export type UserProcess = {
     authorizationStatus: AuthorizationStatus;
+    authInfo: AuthInfo;
 };
 
 export type ReviewData = {
     reviews: ReviewProps[];
     reviewsFetchingStatus: string;
+    reviewsPostFetchingStatus: string;
 }
 
 export type FilmData = {
     genre: string;
-    filmCards: FilmCardProps[];
+    filmCards: FilmCardType[];
     film: FullFilmCard;
-    maxShownFilmCount: number;
     filmsFetchingStatus: string;
     filmFetchingStatus: string;
-    relatedFilms: FilmCardProps[];
+    relatedFilms: FilmCardType[];
     relatedFilmsFetchingStatus: string;
-    promoFilm: PromoFilmProps;
+    promoFilm: PromoFilmType;
     promoFilmFetchingStatus: string;
 }
 
 export type MyListProcess = {
-    favoriteFilms: FilmCardProps[];
+    favoriteFilms: FilmCardType[];
     favoriteFilmsCount: number;
     favoriteFilmsFetchingStatus: string;
     changeFavoriteFilmsFetchingStatus: string;

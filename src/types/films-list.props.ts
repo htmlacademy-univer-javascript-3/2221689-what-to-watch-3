@@ -1,5 +1,5 @@
-import { FilmCardProps } from './film-card.props';
+import { FilmCardType } from './film-card.type';
 
 export type FilmsListProps = {
-    filmCards: FilmCardProps[];
+    filmCards: FilmCardType[];
 }

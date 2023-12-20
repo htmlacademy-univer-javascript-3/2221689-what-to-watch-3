@@ -1,4 +1,4 @@
-import { FullFilmCard } from '../../types/full-film-card.props';
+import { FullFilmCard } from '../../types/full-film-card';
 import getRatingName from '../../utils/get-rating-name';
 
 type FilmOverviewProps = {
@@ -15,11 +15,9 @@ function FilmOverview({ filmCard }: FilmOverviewProps): JSX.Element {
           <span className="film-rating__count">{`${filmCard.scoresCount} ratings`}</span>
         </p>
       </div>
-
       <div className="film-card__text">
         {filmCard.description}
         <p className="film-card__director"><strong>{`Director: ${filmCard.director}`}</strong></p>
-
         <p className="film-card__starring"><strong>{`Starring: ${filmCard.starring.join(', ')}`}</strong></p>
       </div>
     </>

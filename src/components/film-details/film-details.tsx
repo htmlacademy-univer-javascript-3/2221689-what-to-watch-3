@@ -1,5 +1,6 @@
-import { FullFilmCard } from '../../types/full-film-card.props';
+import { FullFilmCard } from '../../types/full-film-card';
 import { getRunTime } from '../../utils/get-runtime';
+import Starring from '../starring/starring';
 
 type FilmDetailsProps = {
     filmCard: FullFilmCard;
@@ -16,11 +17,11 @@ function FilmDetails({ filmCard }: FilmDetailsProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {filmCard.starring.join(', \n')}
+            {filmCard.starring.slice(0, filmCard.starring.length - 1).map((star) => <Starring key={star} star={star}/>)}
+            {filmCard.starring[filmCard.starring.length - 1]}
           </span>
         </p>
       </div>
-
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>

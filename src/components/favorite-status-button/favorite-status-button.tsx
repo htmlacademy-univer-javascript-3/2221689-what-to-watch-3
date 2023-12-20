@@ -18,7 +18,7 @@ function FavoriteStatusButton({filmId, isFavorite }: FavoriteStatusButtonProps):
   const [isCurrentFavorite, setIsCurrentFavorite] = useState(isFavorite);
   const dispatch = useAppDispatch();
 
-  function handleClick() {
+  function handleButtonClick() {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(changeFavoriteFilms({filmId, status: Number(!isCurrentFavorite)}));
       setIsCurrentFavorite(!isCurrentFavorite);
@@ -29,13 +29,13 @@ function FavoriteStatusButton({filmId, isFavorite }: FavoriteStatusButtonProps):
 
   return (
     <button className="btn btn--list film-card__button" type="button"
-      onClick={handleClick}
+      onClick={handleButtonClick}
     >
       {isCurrentFavorite && authorizationStatus === AuthorizationStatus.Auth ?
-        <svg viewBox="0 0 18 14" width="18" height="14">
+        <svg data-testid="in-list" viewBox="0 0 18 14" width="18" height="14">
           <use xlinkHref="#in-list"></use>
         </svg> :
-        <svg viewBox="0 0 19 20" width="19" height="20">
+        <svg data-testid="add" viewBox="0 0 19 20" width="19" height="20">
           <use xlinkHref="#add"></use>
         </svg>}
       <span>My list</span>

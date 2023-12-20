@@ -8,13 +8,12 @@ import MoviePage from '../../pages/movie-page/movie-page';
 import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import { useAppSelector } from '../../hooks';
 import { Loader } from '../loader/loader';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getFilmsFetchingStatus } from '../../store/film-data/selectors';
-
+import { HelmetProvider } from 'react-helmet-async';
+import PrivateRouteSignIn from '../private-route-sign-in/private-route-sign-in';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -27,48 +26,56 @@ function App(): JSX.Element {
   return (
     <>
       {fetchingStatusFilms === RequestStatus.Success &&
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainPage/>}
-        />
-        <Route
-          path={AppRoute.SignIn}
-          element={<SignInPage />}
-        />
-        <Route
-          path={AppRoute.MyList}
-          element={
-            <PrivateRoute authorizationStatus={authorizationStatus}>
-              <MyListPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Film}
-          element={<MoviePage/>}
-        />
-        <Route
-          path={AppRoute.AddReview}
-          element={<AddReviewPage/>}
-        />
-        <Route
-          path={AppRoute.Player}
-          element={<PlayerPage/>}
-        />
-        <Route
-          path={AppRoute.NotFound}
-          element={<NotFoundPage />}
-        />
-        <Route
-          path="*"
-          element={<NotFoundPage />}
-        />
-      </Routes>
-    </HistoryRouter>}
-      {fetchingStatusFilms === RequestStatus.Pending && <Loader/>}
-      {fetchingStatusFilms === RequestStatus.Error && <NotFoundPage/>}
+        <HelmetProvider>
+          <Routes>
+            <Route
+              path={AppRoute.Main}
+              element={<MainPage />}
+            />
+            <Route
+              path={AppRoute.SignIn}
+              element={
+                <PrivateRouteSignIn authorizationStatus={authorizationStatus}>
+                  <SignInPage />
+                </PrivateRouteSignIn>
+              }
+            />
+            <Route
+              path={AppRoute.MyList}
+              element={
+                <PrivateRoute authorizationStatus={authorizationStatus}>
+                  <MyListPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={AppRoute.Film}
+              element={<MoviePage />}
+            />
+            <Route
+              path={AppRoute.AddReview}
+              element={
+                <PrivateRoute authorizationStatus={authorizationStatus}>
+                  <AddReviewPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={AppRoute.Player}
+              element={<PlayerPage />}
+            />
+            <Route
+              path={AppRoute.NotFound}
+              element={<NotFoundPage />}
+            />
+            <Route
+              path="*"
+              element={<NotFoundPage />}
+            />
+          </Routes>
+        </HelmetProvider>}
+      {fetchingStatusFilms === RequestStatus.Pending && <Loader />}
+      {fetchingStatusFilms === RequestStatus.Error && <NotFoundPage />}
     </>
   );
 }

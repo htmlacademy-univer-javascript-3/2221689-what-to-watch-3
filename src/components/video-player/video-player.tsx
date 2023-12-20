@@ -4,7 +4,7 @@ type VideoPlayerProps = {
 
 function VideoPlayer({ srcVideo }: VideoPlayerProps): JSX.Element {
   return (
-    <video width="100%" height="100%" muted loop autoPlay>
+    <video data-testid='videoPlayer' width="100%" height="100%" muted loop autoPlay>
       <source src={srcVideo} type="video/mp4" />
     </video>
   );

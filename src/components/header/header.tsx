@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getAuthInfo, getAuthorizationStatus } from '../../store/user-process/selectors';
 import Logo from '../logo/logo';
 
 function Header(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const authInfo = useAppSelector(getAuthInfo);
   const dispatch = useAppDispatch();
 
   return (
@@ -16,11 +17,11 @@ function Header(): JSX.Element {
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <Link to={AppRoute.MyList}><img src="img/avatar.jpg" alt="User avatar" width="63" height="63" /></Link>
+              <Link to={AppRoute.MyList}><img src={authInfo.avatarUrl} alt="User avatar" width="63" height="63" /></Link>
             </div>
           </li>
           <li className="user-block__item">
-            <Link to={AppRoute.Main} onClick={(evt) => {
+            <Link data-testid="header-link" to={AppRoute.Main} onClick={(evt) => {
               evt.preventDefault();
               dispatch(logoutAction());
             }}

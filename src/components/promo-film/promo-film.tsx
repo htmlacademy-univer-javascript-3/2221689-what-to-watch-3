@@ -1,13 +1,31 @@
 import { useNavigate } from 'react-router-dom';
 import FavoriteStatusButton from '../favorite-status-button/favorite-status-button';
-import { PromoFilmProps } from '../../types/promo-film.props';
+import { PromoFilmType } from '../../types/promo-film';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { fetchFavoriteFilms } from '../../store/api-actions';
 
-type PromoFilmCompProps = {
-  promoFilm: PromoFilmProps;
+type PromoFilmProps = {
+  promoFilm: PromoFilmType;
 }
 
-function PromoFilm({promoFilm}: PromoFilmCompProps): JSX.Element {
+function PromoFilm({promoFilm}: PromoFilmProps): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      if (promoFilm.id) {
+        dispatch(fetchFavoriteFilms());
+      }
+    }
+    return () => {
+      isMounted = false;
+    };
+
+  }, [dispatch, promoFilm.id]);
+
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
@@ -23,7 +41,7 @@ function PromoFilm({promoFilm}: PromoFilmCompProps): JSX.Element {
           </p>
 
           <div className="film-card__buttons">
-            <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${promoFilm.id}`)}>
+            <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`player/${promoFilm.id}`)}>
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"></use>
               </svg>

@@ -1,7 +1,7 @@
 import { DEFAULT_GENRE } from '../const';
-import { FilmCardProps } from '../types/film-card.props';
+import { FilmCardType } from '../types/film-card.type';
 
-export default function getGenreList(filmCards: FilmCardProps[]) {
+export default function getGenreList(filmCards: FilmCardType[]) {
   const genreList: string[] = [];
   filmCards.forEach((filmCard) => {
     if (!genreList.includes(filmCard.genre)) {
