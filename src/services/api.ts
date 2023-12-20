@@ -2,6 +2,7 @@ import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} fro
 import { dropToken, getToken } from './token';
 import { StatusCodes } from 'http-status-codes';
 import {toast} from 'react-toastify';
+import { getMarkupServerError } from '../utils/get-markup-server-error';
 
 const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;
@@ -21,6 +22,7 @@ const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[resp
 
 
 export const createAPI = (): AxiosInstance => {
+  let countRequest = 0;
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
@@ -32,7 +34,6 @@ export const createAPI = (): AxiosInstance => {
       if (token && config.headers) {
         config.headers['x-token'] = token;
       }
-
       return config;
     },
   );
@@ -44,11 +45,19 @@ export const createAPI = (): AxiosInstance => {
       if (error.response?.status === 401 && token) {
         dropToken();
       }
-      if (error.response && shouldDisplayError(error.response)) {
+      if (error.response && shouldDisplayError(error.response) &&
+      error.response.data.message === 'The route is not found.') {
+        countRequest++;
+        if (countRequest === 1) {
+          getMarkupServerError();
+        }
+      } else if (error.response && shouldDisplayError(error.response) &&
+      error.response.data.message.slice(0, 4) === 'Film'){
+        toast.warn('Film was not found');
+      } else if (error.response?.status !== 401 && error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
         toast.warn(detailMessage.message);
       }
-
       throw error;
     }
   );

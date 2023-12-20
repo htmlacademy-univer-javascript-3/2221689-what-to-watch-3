@@ -1,15 +1,13 @@
 import { Months } from '../../const';
 import { ReviewProps } from '../../types/review.props';
+import getDate from '../../utils/get-date';
 
 type ReviewsProps = {
     review: ReviewProps;
 }
 
 function Review({ review }: ReviewsProps): JSX.Element {
-  const date = new Date(review.date);
-  const month = date.getMonth() + 1 as keyof typeof Months;
-  const day = date.getUTCDate();
-  const year = date.getFullYear();
+  const {day, month, year} = getDate(review.date);
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -19,7 +17,6 @@ function Review({ review }: ReviewsProps): JSX.Element {
           <time className="review__date" dateTime={review.date}>{`${Months[month]} ${day}, ${year}`}</time>
         </footer>
       </blockquote>
-
       <div className="review__rating">{review.rating}</div>
     </div>
   );

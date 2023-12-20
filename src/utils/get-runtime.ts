@@ -1,4 +1,4 @@
-const HOUR_MINUTES_COUNT = 60;
+import { HOUR_MINUTES_COUNT } from '../const';
 
 export function getRunTime(runTime: number){
   const hours = Math.floor(runTime / HOUR_MINUTES_COUNT);

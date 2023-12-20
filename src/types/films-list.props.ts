@@ -1,4 +1,4 @@
-import { FilmCardProps } from './film-card.props';
+import { FilmCardProps } from './film-card.type';
 
 export type FilmsListProps = {
     filmCards: FilmCardProps[];

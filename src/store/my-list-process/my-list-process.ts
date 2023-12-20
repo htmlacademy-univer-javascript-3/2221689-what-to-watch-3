@@ -32,12 +32,7 @@ export const myListProcess = createSlice({
       })
       .addCase(changeFavoriteFilms.fulfilled, (state, action) => {
         state.changeFavoriteFilmsFetchingStatus = RequestStatus.Success;
-        const film = action.payload;
-        if (film.isFavorite) {
-          state.favoriteFilmsCount++;
-        } else {
-          state.favoriteFilmsCount--;
-        }
+        state.favoriteFilmsCount += action.payload;
       })
       .addCase(changeFavoriteFilms.rejected, (state) => {
         state.changeFavoriteFilmsFetchingStatus = RequestStatus.Error;

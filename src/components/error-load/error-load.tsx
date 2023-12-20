@@ -1,5 +1,5 @@
 export function ErrorLoad() {
   return (
-    <p style={{textAlign: 'center'}}>Ошибка загрузки</p>
+    <p style={{textAlign: 'center'}}>Loading error</p>
   );
 }

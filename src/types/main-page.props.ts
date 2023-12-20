@@ -1,5 +1,5 @@
-import { PromoFilmProps } from './promo-film.props';
+import { PromoFilmType } from './promo-film';
 
 export type MainPageProps = {
-  promoFilm: PromoFilmProps;
+  promoFilm: PromoFilmType;
 }

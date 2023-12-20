@@ -10,8 +10,7 @@ function Footer(): JSX.Element {
           <span className="logo__letter logo__letter--3">W</span>
         </Link>
       </div>
-
-      <div className="copyright">
+      <div data-testid="copyright" className="copyright">
         <p>© 2019 What to watch Ltd.</p>
       </div>
     </footer>

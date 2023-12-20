@@ -30,6 +30,7 @@ export const Months = {
   11: 'November',
   12: 'December'
 };
+
 export const TabsInfo = {
   Overview: 'Overview',
   Details: 'Details',
@@ -48,7 +49,7 @@ export const APIRoute = {
 export const RequestStatus = {
   Idle: 'Idle',
   Pending: 'Pending',
-  Success: 'Succsess',
+  Success: 'Success',
   Error: 'Error'
 };
 
@@ -60,9 +61,16 @@ export const SECONDS_IN_HOUR = 3600;
 
 export const SECONDS_IN_MINUTE = 60;
 
+export const HOUR_MINUTES_COUNT = 60;
+
+export const CommentLength = {
+  Max: 400,
+  Min: 50
+};
+
 export enum NameSpace {
-  Films= 'FILMS',
-  Comments= 'COMMENTS',
-  User= 'USER',
+  Films = 'FILMS',
+  Comments = 'COMMENTS',
+  User = 'USER',
   MyList = 'MYLIST'
 }
