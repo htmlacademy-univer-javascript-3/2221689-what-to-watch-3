@@ -46,7 +46,6 @@ function AddReviewPage(): JSX.Element {
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <Header />
-          
           <div className="film-card__poster film-card__poster--small">
             <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327" />
           </div>
